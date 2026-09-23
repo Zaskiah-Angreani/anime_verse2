@@ -36,9 +36,9 @@ class AnimeView extends StatelessWidget {
               crossAxisSpacing: constraints.maxWidth * 0.05,
               childAspectRatio: childAspectRatio,
             ),
-            itemCount: dummyAnimeList.length,
+            itemCount: DummyData.animeList.length,
             itemBuilder: (context, index) {
-              final anime = dummyAnimeList[index];
+              final anime = DummyData.animeList[index];
               return AnimeCard(
                 id: anime.id,
                 title: anime.title,
