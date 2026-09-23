@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import '../widgets/app_scaffold.dart';
+import '../widgets/genre_list.dart';
+import '../widgets/anime_view.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -79,6 +81,14 @@ class HomeScreen extends StatelessWidget {
                 ),
               ),
             ),
+
+            // Genre List
+            const GenreList(),
+            SizedBox(height: screenHeight * 0.03),
+
+            // Anime List
+            const AnimeView(),
+            SizedBox(height: screenHeight * 0.025),
           ],
         ),
       ),
