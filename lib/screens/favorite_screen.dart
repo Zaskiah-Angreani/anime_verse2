@@ -11,8 +11,8 @@ class FavoriteScreen extends StatelessWidget {
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
 
-    // Get one anime from dummy data for display
-    final favoriteAnime = dummyAnimeList.first;
+    // Mengambil satu data anime dari DummyData.animeList
+    final favoriteAnime = DummyData.animeList.first;
 
     return AppScaffold(
       appBar: AppBar(
@@ -30,7 +30,7 @@ class FavoriteScreen extends StatelessWidget {
       ),
       body: Column(
         children: [
-          // Search Bar (Optional placeholder / layout section)
+          // Search Bar
           Padding(
             padding: EdgeInsets.all(screenWidth * 0.04),
             child: Container(
