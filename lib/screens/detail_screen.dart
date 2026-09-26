@@ -1,27 +1,14 @@
 import 'package:flutter/material.dart';
+import '../data/dummy_data.dart';
+import '../models/anime.dart';
 import '../widgets/app_scaffold.dart';
 
 class DetailScreen extends StatelessWidget {
-  final String id;
-  final String title;
-  final String imagePath;
-  final String genre;
-  final String rating;
-  final String totalEpisodes;
-  final String description;
+  final String animeId;
 
   const DetailScreen({
     super.key,
-    // Menggunakan data dummy untuk sementara sebagai demo
-    this.id = '1',
-    this.title = 'Black Clover',
-    this.imagePath = 'assets/images/black_clover.jpg',
-    this.genre = 'Action, Adventure, Fantasy',
-    this.rating = '8.14',
-    this.totalEpisodes = '170',
-    this.description =
-    'Asta and Yuno were abandoned at the same church on the same day. '
-        'Raised together as children, they came to know of the "Wizard King"—a title given to the strongest mage in the kingdom—and promised that they would compete against each other for the position of the next Wizard King.',
+    required this.animeId,
   });
 
   @override
@@ -29,10 +16,16 @@ class DetailScreen extends StatelessWidget {
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
 
+    // Cari anime berdasarkan animeId dari DummyData
+    final anime = DummyData.animeList.firstWhere(
+          (element) => element.id == animeId,
+      orElse: () => DummyData.animeList.first,
+    );
+
     return AppScaffold(
       body: CustomScrollView(
         slivers: [
-          // Header section with image and title
+          // Header section dengan gambar dan judul
           SliverAppBar(
             floating: true,
             pinned: true,
@@ -63,12 +56,12 @@ class DetailScreen extends StatelessWidget {
               background: Stack(
                 fit: StackFit.expand,
                 children: [
-                  // Background image
+                  // Gambar Background Anime
                   Image.asset(
-                    imagePath,
+                    anime.imagePath,
                     fit: BoxFit.cover,
                   ),
-                  // Gradient overlay
+                  // Gradient Overlay
                   Container(
                     decoration: BoxDecoration(
                       gradient: LinearGradient(
@@ -83,7 +76,7 @@ class DetailScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-                  // Title at the bottom of the image
+                  // Judul dan Genre di bagian bawah gambar
                   Positioned(
                     bottom: screenHeight * 0.02,
                     left: screenWidth * 0.04,
@@ -92,7 +85,7 @@ class DetailScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          title,
+                          anime.title,
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: screenWidth * 0.07,
@@ -108,7 +101,7 @@ class DetailScreen extends StatelessWidget {
                         ),
                         SizedBox(height: screenHeight * 0.005),
                         Text(
-                          genre,
+                          anime.genre,
                           style: TextStyle(
                             color: Colors.white.withOpacity(0.9),
                             fontSize: screenWidth * 0.04,
@@ -136,7 +129,7 @@ class DetailScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // Rating, Episodes, and Favorites info
+                  // Info Rating, Episode, dan Favorit
                   SingleChildScrollView(
                     scrollDirection: Axis.horizontal,
                     child: Row(
@@ -169,7 +162,7 @@ class DetailScreen extends StatelessWidget {
                               ),
                               SizedBox(width: screenWidth * 0.01),
                               Text(
-                                rating,
+                                anime.rating,
                                 style: TextStyle(
                                   color: Colors.white,
                                   fontSize: screenWidth * 0.035,
@@ -199,7 +192,7 @@ class DetailScreen extends StatelessWidget {
                             BorderRadius.circular(screenWidth * 0.02),
                           ),
                           child: Text(
-                            '$totalEpisodes Episodes',
+                            '${anime.totalEpisodes} Episodes',
                             style: TextStyle(
                               color: Colors.white,
                               fontSize: screenWidth * 0.035,
@@ -252,7 +245,7 @@ class DetailScreen extends StatelessWidget {
 
                   SizedBox(height: screenHeight * 0.03),
 
-                  // Synopsis Title
+                  // Title Synopsis
                   Text(
                     'Synopsis',
                     style: TextStyle(
@@ -264,9 +257,9 @@ class DetailScreen extends StatelessWidget {
 
                   SizedBox(height: screenHeight * 0.015),
 
-                  // Synopsis Text
+                  // Text Synopsis
                   Text(
-                    description,
+                    anime.description,
                     style: TextStyle(
                       color: Colors.white.withOpacity(0.9),
                       fontSize: screenWidth * 0.038,

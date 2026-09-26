@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import '../config/routes.dart';
 import '../widgets/app_scaffold.dart';
 import '../widgets/profile_button.dart';
 
@@ -36,7 +38,7 @@ class ProfileScreen extends StatelessWidget {
               padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.04),
               child: Column(
                 children: [
-                  // Profile Picture (Static)
+                  // Profile Picture
                   Container(
                     width: screenWidth * 0.25,
                     height: screenWidth * 0.25,
@@ -59,7 +61,7 @@ class ProfileScreen extends StatelessWidget {
 
                   SizedBox(height: screenHeight * 0.02),
 
-                  // Display Name / Username
+                  // Display Name
                   Text(
                     'Zaskiah Angreani',
                     style: TextStyle(
@@ -121,26 +123,20 @@ class ProfileScreen extends StatelessWidget {
             ),
             SizedBox(height: screenHeight * 0.015),
 
-            // Change Username Button
             ProfileButton(
               icon: Icons.person_outline,
               title: 'Change Username',
               subtitle: 'Update your display name',
-              onTap: () {
-                // Static dummy function
-              },
+              onTap: () {},
             ),
 
             SizedBox(height: screenHeight * 0.01),
 
-            // Change Password Button
             ProfileButton(
               icon: Icons.lock_outline,
               title: 'Change Password',
               subtitle: 'Update your account password',
-              onTap: () {
-                // Static dummy function
-              },
+              onTap: () {},
             ),
 
             SizedBox(height: screenHeight * 0.03),
@@ -159,25 +155,22 @@ class ProfileScreen extends StatelessWidget {
             ),
             SizedBox(height: screenHeight * 0.015),
 
-            // About Button
             ProfileButton(
               icon: Icons.info_outline,
               title: 'About AnimeVerse',
               subtitle: 'Version 1.0.0',
-              onTap: () {
-                // Static dummy function
-              },
+              onTap: () {},
             ),
 
             SizedBox(height: screenHeight * 0.05),
 
-            // Logout Button (Static)
+            // Logout Button
             Container(
               width: double.infinity,
               margin: EdgeInsets.symmetric(horizontal: screenWidth * 0.02),
               child: ElevatedButton.icon(
                 onPressed: () {
-                  // Static dummy function
+                  context.go(AppRoutes.signIn);
                 },
                 icon: Icon(
                   Icons.logout,
