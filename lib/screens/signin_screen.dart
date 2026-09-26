@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
+import '../config/routes.dart';
 import '../widgets/app_scaffold.dart';
 
 class SignInScreen extends StatelessWidget {
@@ -24,9 +26,11 @@ class SignInScreen extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    SizedBox(height: screenHeight * 0.14),
+                    SizedBox(height: screenHeight * 0.1),
 
                     // TODO: Add logo here
+
+                    SizedBox(height: screenHeight * 0.04),
 
                     // Signin Title
                     Text(
@@ -149,7 +153,7 @@ class SignInScreen extends StatelessWidget {
                       height: screenHeight * 0.075,
                       child: ElevatedButton(
                         onPressed: () {
-                          // TODO: Implement sign in functionality
+                          context.go(AppRoutes.home);
                         },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.blue.withOpacity(0.8),
@@ -171,7 +175,7 @@ class SignInScreen extends StatelessWidget {
 
                     SizedBox(height: screenHeight * 0.03),
 
-                    // or continue with
+                    // Or continue with
                     Row(
                       children: [
                         Expanded(
@@ -239,33 +243,30 @@ class SignInScreen extends StatelessWidget {
                     SizedBox(height: screenHeight * 0.04),
 
                     // Sign up link
-                    FittedBox(
-                      fit: BoxFit.scaleDown,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            "Don't have an account? ",
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "Don't have an account? ",
+                          style: TextStyle(
+                            fontSize: screenWidth * 0.04,
+                            color: Colors.white70,
+                          ),
+                        ),
+                        TextButton(
+                          onPressed: () {
+                            context.go(AppRoutes.signUp);
+                          },
+                          child: Text(
+                            'Sign Up',
                             style: TextStyle(
                               fontSize: screenWidth * 0.04,
-                              color: Colors.white70,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.blue.shade300,
                             ),
                           ),
-                          TextButton(
-                            onPressed: () {
-                              // TODO: Navigate to sign up screen
-                            },
-                            child: Text(
-                              'Sign Up',
-                              style: TextStyle(
-                                fontSize: screenWidth * 0.04,
-                                fontWeight: FontWeight.w600,
-                                color: Colors.blue.shade300,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
 
                     SizedBox(height: screenHeight * 0.05),
