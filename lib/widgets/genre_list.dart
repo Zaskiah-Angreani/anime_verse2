@@ -40,7 +40,7 @@ class GenreList extends StatelessWidget {
           final isActive = genre == selected;
 
           return Padding(
-            padding: EdgeInsets.only(right: screenWidth * 0.06),
+            padding: EdgeInsets.only(right: screenWidth * 0.03),
             child: InkWell(
               borderRadius: BorderRadius.circular(screenWidth * 0.06),
               onTap: () {
@@ -48,14 +48,18 @@ class GenreList extends StatelessWidget {
                   onGenreSelected!(genre);
                 }
               },
-              child: Container(
+              child: AnimatedContainer(
+                duration: const Duration(milliseconds: 200),
                 padding: EdgeInsets.symmetric(
-                  horizontal: screenWidth * 0.06,
-                  vertical: screenHeight * 0.01,
+                  horizontal: screenWidth * 0.05,
+                  vertical: screenHeight * 0.012,
                 ),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(screenWidth * 0.06),
-                  color: const Color(0xFF0b395e),
+                  // PERBAIKAN: Ubah warna background saat genre aktif/terpilih
+                  color: isActive
+                      ? const Color(0xFF1E88E5) // Warna biru terang untuk active chip
+                      : const Color(0xFF0b395e), // Warna navy bawaan saat inaktif
                   boxShadow: [
                     BoxShadow(
                       color: Colors.black.withOpacity(0.3),
@@ -67,9 +71,9 @@ class GenreList extends StatelessWidget {
                 child: Text(
                   genre,
                   style: TextStyle(
-                    fontSize: screenWidth * 0.04,
-                    color: isActive ? Colors.white : Colors.grey.shade600,
-                    fontWeight: FontWeight.w700,
+                    fontSize: screenWidth * 0.038,
+                    color: isActive ? Colors.white : Colors.grey.shade400,
+                    fontWeight: isActive ? FontWeight.w800 : FontWeight.w600,
                   ),
                 ),
               ),

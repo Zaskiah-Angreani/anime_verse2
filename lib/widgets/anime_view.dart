@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
-import '../data/dummy_data.dart';
+import '../models/anime.dart';
 import 'anime_card.dart';
 
 class AnimeView extends StatelessWidget {
-  const AnimeView({super.key});
+  // 1. Terima animeList sebagai parameter
+  final List<Anime> animeList;
+
+  const AnimeView({
+    super.key,
+    required this.animeList, // 2. Parameter wajib ada
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -36,9 +42,10 @@ class AnimeView extends StatelessWidget {
               crossAxisSpacing: constraints.maxWidth * 0.05,
               childAspectRatio: childAspectRatio,
             ),
-            itemCount: DummyData.animeList.length,
+            // 3. Gunakan panjang list dari parameter
+            itemCount: animeList.length,
             itemBuilder: (context, index) {
-              final anime = DummyData.animeList[index];
+              final anime = animeList[index];
               return AnimeCard(
                 id: anime.id,
                 title: anime.title,
